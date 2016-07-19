@@ -109,13 +109,28 @@ kirbroAppCtrl.controller('VenueCtrl', function ($scope, $http, $routeParams) {
 });
 
 kirbroAppCtrl.controller('CostCtrl', function ($scope, $http) {
-	$scope.loading = true;
+	$scope.loading = undefined;
 	$scope.checkCost = function(){
 		$scope.loading = "loading";
 		$http.get(
 			'server/cost/'+$scope.origin+'/'+$scope.destination+'/'+$scope.weight+'/'+$scope.kurir
 		).success(function(response){
 			$scope.response = response;
+			$scope.loading = undefined;
+		});
+	};
+});
+
+kirbroAppCtrl.controller('TrackCtrl', function ($scope, $http) {
+	$scope.loading = undefined;
+	$scope.dotrack = function(){
+		$scope.loading = "loading";
+		$http.get(
+			'server/track/'+$scope.pengirim+'/'+$scope.resi
+		).success(function(response){
+			$scope.query = response.query;
+			$scope.data = response.data.detail;
+			$scope.riwayat = response.data.riwayat;
 			$scope.loading = undefined;
 		});
 	};

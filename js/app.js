@@ -19,6 +19,10 @@ kirbroApp.config(['$routeProvider',
         templateUrl: 'tmp/cost.html',
         controller: 'CostCtrl'
       }).
+      when('/track', {
+        templateUrl: 'tmp/track.html',
+        controller: 'TrackCtrl'
+      }).
       when('/venues/:courier', {
         templateUrl: 'tmp/venues.html',
         controller: 'VenuesCtrl'
