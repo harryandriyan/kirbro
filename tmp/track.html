@@ -1,24 +1,16 @@
-<div class="section" ng-controller="CostCtrl">
+<div class="section" ng-controller="TrackCtrl">
 	<div class="row">
-	  <h4 class="light header center">Check Cost</h4>
+	  <h4 class="light header center">Tracking</h4>
 	  	<form class="col s12">
 	  		<div class="row">
 	  			<div class="input-field col s3">
-			        <input placeholder="tiki/jne ?" id="kurir" type="text" class="validate" ng-model="kurir">
+			        <input placeholder="tiki/jne ?" id="pengirim" type="text" class="validate" ng-model="pengirim">
 			    </div>
-				<div class="input-field col s3">
-			        <input placeholder="Origin" id="origin" type="text" class="validate" ng-model="origin">
+				<div class="input-field col s5">
+			        <input placeholder="Origin" id="resi" type="text" class="validate" ng-model="resi">
 			    </div>
-			    <div class="input-field col s3">
-			        <input placeholder="Destination" id="destination" type="text" class="validate" ng-model="destination">
-			    </div>
-			    <div class="input-field col s3">
-			    	<input placeholder="Weight (in Kilogram)" id="weight" type="text" class="validate" ng-model="weight">
-			    </div>
-			</div>
-			<div class="row">
-			    <div align="center" class="input-field col s12">
-			    	<a class="waves-effect waves-light btn-large green" ng-click="checkCost()"> Check</a>
+			    <div align="center" class="input-field col s4">
+			    	<a class="waves-effect waves-light btn-large green" ng-click="dotrack()"> Track</a>
 			    </div>
 			</div>
 		</form>
@@ -66,24 +58,27 @@
 		    </div>
 		</div>
 	</div>
-	<div class="row" ng-show="response">
+	<div class="row" ng-show="data">
 		<div class="col s12">
 	      	<table class="striped responsive-table">
 		        <thead>
 			        <tr>
-			            <th data-field="name">Service </th>
-			            <th data-field="price">Cost</th>
+			            <th>RESI </th>
+			            <th>STATUS</th>
+			            <th>SERVICE</th>
+			            <th>TANGGAL</th>
+			            <th>ASAL</th>
+			            <th>TUJUAN</th>
 			        </tr>
 		        </thead>
 		        <tbody>
-			        <tr ng-repeat="cost in response.ongkos">
-			            <td>{{ cost.layanan }} / {{ cost.etd }}</td>
-			            <td>Rp {{ cost.tarif }}</td>
-			        </tr>
 			        <tr>
-			        	<td colspan="2">
-			        		<a class="waves-effect waves-light btn right green" href="#/venues/{{response.service}}"> Find {{response.service}} around You</a>
-			        	</td>
+			            <td>{{data.no_resi}}</td>
+			            <td>{{data.status}}</td>
+			            <td>{{data.service}}</td>
+			            <td>{{data.tanggal}}</td>
+			            <td>{{data.asal.nama}},{{data.asal.alamat}}</td>
+			            <td>{{data.tujuan.nama}},{{data.tujuan.alamat}}</td>
 			        </tr>
 		        </tbody>
 		    </table>
