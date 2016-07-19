@@ -1,0 +1,29 @@
+<div class="section" ng-controller="VenuesCtrl">
+	<div class="progress green" ng-show="loading">
+    	<div class="indeterminate white"></div>
+  	</div>
+	<div class="row" ng-hide="loading" ng-repeat="venue in venues">
+		<div class="col s12">
+			<ul class="collection">
+			    <li class="collection-item avatar" ng-repeat="ven in venue.items">
+			    	<div ng-if="courier">
+					    <img src="images/logo/{{courier}}.png" alt="" class="circle">
+			    	</div>
+			      	<span class="title">{{ ven.venue.name }}</span>
+			      	<p>{{ ven.venue.location.address }}, {{ ven.venue.location.country }} <br>
+			        	{{ ven.venue.location.distance }} meter(s) from here
+			    	</p>
+			    	<a href="#/venue/{{ven.venue.id}}" class="secondary-content"><i class="mdi-action-grade"></i> More</a>
+			    </li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('.collapsible').collapsible({
+	      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+	    });
+	});
+</script>

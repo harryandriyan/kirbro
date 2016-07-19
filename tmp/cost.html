@@ -1,0 +1,115 @@
+<div class="section" ng-controller="CostCtrl">
+	<div class="row">
+	  <h4 class="light header center">Check Cost</h4>
+	  	<form class="col s12">
+	  		<div class="row">
+	  			<div class="input-field col s3">
+			        <input placeholder="tiki/jne ?" id="kurir" type="text" class="validate" ng-model="kurir">
+			    </div>
+				<div class="input-field col s3">
+			        <input placeholder="Origin" id="origin" type="text" class="validate" ng-model="origin">
+			    </div>
+			    <div class="input-field col s3">
+			        <input placeholder="Destination" id="destination" type="text" class="validate" ng-model="destination">
+			    </div>
+			    <div class="input-field col s3">
+			    	<input placeholder="Weight (in Kilogram)" id="weight" type="text" class="validate" ng-model="weight">
+			    </div>
+			</div>
+			<div class="row">
+			    <div align="center" class="input-field col s12">
+			    	<a class="waves-effect waves-light btn-large green" ng-click="checkCost()"> Check</a>
+			    </div>
+			</div>
+		</form>
+	</div>
+	<div class="row center" ng-show="loading">
+		<div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-blue">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		    </div>
+
+		    <div class="spinner-layer spinner-red">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		    </div>
+
+		    <div class="spinner-layer spinner-yellow">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		    </div>
+
+		    <div class="spinner-layer spinner-green">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div class="row" ng-hide="loading">
+		<div class="col s12">
+	      	<table class="striped responsive-table">
+		        <thead>
+			        <tr>
+			            <th data-field="name">Service </th>
+			            <th data-field="price">Cost</th>
+			        </tr>
+		        </thead>
+		        <tbody>
+			        <tr ng-repeat="cost in response.ongkos">
+			            <td>{{ cost.layanan }} / {{ cost.etd }}</td>
+			            <td>Rp {{ cost.tarif }}</td>
+			        </tr>
+			        <tr>
+			        	<td colspan="2">
+			        		<a class="waves-effect waves-light btn right green" href="#/venues/{{response.service}}"> Find {{response.service}} around You</a>
+			        	</td>
+			        </tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+
+<style type="text/css">
+	.angucomplete-dropdown {
+	    overflow-y: auto;
+	    max-height: 200px;
+	}
+	.angucomplete-title {
+		min-height: 25px;
+		padding: 10px;
+	}
+	.angucomplete-title:hover {
+		background: #4CAF50;
+		color: #fff;
+		padding: 10px;
+	}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('.collapsible').collapsible({
+	      accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+	    });
+	});
+</script>

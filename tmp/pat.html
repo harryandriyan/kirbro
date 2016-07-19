@@ -1,0 +1,11 @@
+<div class="section" ng-controller="PATCtrl">
+  <div class="row">
+    <h5 class="center">Privacy and Terms</h5>
+      <div ng-repeat="list in pat">
+        <h6> {{ list.table_pat_title }} </h6>
+        <blockquote>
+          {{ list.table_pat_text }}
+        </blockquote>
+      </div>
+  </div>
+</div>

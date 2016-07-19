@@ -1,0 +1,94 @@
+<div class="section" ng-controller="VenueCtrl">
+	<div class="col m12">
+		<div class="row center" ng-hide="venue">
+			<div class="preloader-wrapper big active">
+			    <div class="spinner-layer spinner-green">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			    </div>
+
+			    <div class="spinner-layer spinner-red">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			    </div>
+
+			    <div class="spinner-layer spinner-yellow">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			    </div>
+
+			    <div class="spinner-layer spinner-blue">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div class="row center" ng-show="venue">
+			<div class="col m12">
+				<h4>{{venue.name}}</h4>
+			</div>
+		</div>
+		<div class="row center" ng-repeat="photos in venue.photos.groups" ng-show="venue">
+			<div class="col m2" ng-repeat="photo in photos.items">
+				<img ng-src="{{photo.prefix}}180{{photo.suffix}}" alt="" class="responsive-img z-depth-1">
+			</div>
+		</div>
+			<div class="row valign-wrapper" ng-show="venue">
+		    <div class="col s7">
+			    <span ng-repeat="category in venue.categories" class="light-green darken-4-text">{{category.name}}, </span> <br>
+		    	<span class="black-text">
+		        	{{venue.location.address}}, {{venue.location.city}}, {{venue.location.country}}
+		    	</span> <br>
+		    	Total Visitors : {{venue.stats.usersCount}} Total Visits : {{venue.stats.visitsCount}} <br>
+		    	
+		    	<br>
+		    	<span >Phone : {{venue.contact.formattedPhone}} </span><br>
+		    	<span >Twitter : <a href="https://twitter.com/{{venue.contact.twitter}}" target="_blank">@{{venue.contact.twitter}}</a> </span><br>
+		    	 <a href="http://maps.google.com/maps?daddr={{venue.location.lat}},{{venue.location.lng}}" target="_blank">Get Direction</a>
+		    	 <br>
+		    	 <table>
+		        <thead>
+		          <tr>
+		              <th data-field="id">Day</th>
+		              <th data-field="name">Open Time</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr ng-repeat="day in venue.popular.timeframes">
+		            <td>{{day.days}}</td>
+		            <td><span ng-repeat="opentime in day.open">{{ opentime.renderedTime }} / </span></td>
+		          </tr>
+		        </tbody>
+		      </table>
+		    	{{venue.description}} <br>
+		    </div>
+		    <div class="col s5 z-depth-1" id="map" style="height: 300px !important;"></div>
+			</div>
+			<div class="row right" ng-show="venue">
+	  		<div class="col md2" style="margin-top: -4%;" align="right">
+	  			<img src="images/poweredby-black-4s.png" width="60%" class="responsive-img" />
+	  		</div>
+			</div>
+	</div>
+</div>

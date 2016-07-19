@@ -1,0 +1,11 @@
+<div class="section" ng-controller="PATCtrl">
+  <div class="row">
+    <h5 class="center">Copyright</h5>
+      <div ng-repeat="list in copyright">
+        <h6> {{ list.table_copyright_title }} </h6>
+        <blockquote>
+          {{ list.table_copyright_text }}
+        </blockquote>
+      </div>
+  </div>
+</div>
