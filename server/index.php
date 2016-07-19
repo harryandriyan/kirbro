@@ -44,8 +44,27 @@ $app->get(
       $ch = curl_init();
    
       curl_setopt($ch, CURLOPT_URL, $url);
-      //curl_setopt($ch, CURLOPT_REFERER, "http://www.example.org/yay.htm");
-      //curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
+      curl_setopt($ch, CURLOPT_HEADER, 0);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+      $output = curl_exec($ch);
+      curl_close($ch);
+   
+      echo $output;
+    }
+);
+
+$app->get(
+    '/track/:pengirim/:resi',
+    function ($pengirim, $resi) use ($app) {
+      // is cURL installed yet?
+      if (!function_exists('curl_init')){
+          die('Sorry cURL is not installed!');
+      }
+      $url = "http://ibacor.com/api/cek-resi?pengirim=".$pengirim."&resi=".$resi."";
+      $ch = curl_init();
+   
+      curl_setopt($ch, CURLOPT_URL, $url);
       curl_setopt($ch, CURLOPT_HEADER, 0);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_TIMEOUT, 10);
